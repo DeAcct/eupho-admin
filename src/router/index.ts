@@ -1,4 +1,5 @@
 import { useUser } from '@/stores/user'
+import { storeToRefs } from 'pinia'
 import { createRouter, createWebHistory } from 'vue-router'
 
 const router = createRouter({
@@ -8,31 +9,25 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: () => import("@/views/Home.vue"),
-      meta: {
-        requireLogin: true
-      }
     },
     {
       path: "/login",
       name: "login",
       component: () => import("@/views/Login.vue"),
-      meta: {
-        requireLogin: false
-      }
     }
   ]
 })
 
-router.beforeEach((to) => {
-  if (!to.meta.requireLogin) {
-    return true
-  }
-  const user = useUser();
-  console.log(user.getUser)
-  if (!user.getUser) {
-    console.log("User not logged in")
-    router.replace("/login")
-  }
-})
+// router.beforeEach((to) => {
+//   if (!to.meta.requireLogin) {
+//     return true
+//   }
+//   const userStore = useUser();
+//   const { user } = storeToRefs(userStore);
+//   if (!user.value) {
+//     console.log("User not logged in")
+//     router.replace("/login")
+//   }
+// })
 
 export default router

@@ -14,6 +14,7 @@ import IconSeekOff from "@/components/icons/IconSeekOff.vue";
 import IconSeekOn from "@/components/icons/IconSeekOn.vue";
 
 import DereShortLogo from "@/assets/DereShortLogo.svg";
+import { useRouter } from "vue-router";
 
 const { value: email, update: updateEmail, clear: clearEmail } = useTextField();
 
@@ -28,11 +29,17 @@ function togglePeek() {
 }
 
 const user = useUser();
+const router = useRouter();
+async function onSubmit(e: Event) {
+  e.preventDefault();
+  await user.login(email, password);
+  router.push("/");
+}
 </script>
 
 <template>
   <div class="Login">
-    <form class="Login__Box">
+    <form class="Login__Box" @submit="onSubmit">
       <header class="Login__Indicator">
         <h1 class="Login__Logo">
           <img :src="DereShortLogo" alt="데레" />
@@ -95,11 +102,7 @@ const user = useUser();
         <CommonButton class="Login__Button">
           <template #text>신입사원 계정요청</template>
         </CommonButton>
-        <CommonButton
-          class="Login__Button"
-          filled
-          @click="user.login(email, password)"
-        >
+        <CommonButton class="Login__Button" filled type="submit">
           <template #text>로그인</template>
         </CommonButton>
       </div>

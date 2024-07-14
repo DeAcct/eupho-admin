@@ -34,6 +34,7 @@
   }
   &__Text {
     color: hsl(var(--theme-500));
+    font-size: 1.4rem;
   }
   &[filled] {
     background-color: hsl(var(--theme-500));
