@@ -40,6 +40,8 @@ const { user } = storeToRefs(useUser());
     );
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    background-clip: text;
+    color: transparent;
   }
   &__Contents {
     width: min(calc(100% - 4.8rem), var(--view-max-width));

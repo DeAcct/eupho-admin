@@ -67,6 +67,10 @@ svg {
   float: none;
   text-align: left;
 }
+::selection {
+  background-color: hsl(var(--theme-500));
+  color: #fff;
+}
 input {
   background-color: transparent;
 }
