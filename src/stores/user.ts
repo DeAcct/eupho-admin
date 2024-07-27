@@ -1,7 +1,7 @@
-import { ref, computed, unref, type Ref } from 'vue'
+import { ref, unref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 
-import { getAuth, onAuthStateChanged, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
+import { browserSessionPersistence, getAuth, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
 // import { doc, getDoc, getFirestore } from 'firebase/firestore';
 
 
@@ -15,6 +15,7 @@ export const useUser = defineStore('user', () => {
     const _password = unref(password);
 
     isLoading.value = true;
+    await setPersistence(auth, browserSessionPersistence);
     const { user: data } = await signInWithEmailAndPassword(auth, _email, _password);
     user.value = data;
     isLoading.value = false;

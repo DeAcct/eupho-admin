@@ -1,11 +1,12 @@
 <script lang="ts" setup>
 import Logo from "@/components/Logo.vue";
-import CommonButton from "./CommonButton.vue";
-import { storeToRefs } from "pinia";
+import CommonButton from "@/components/CommonButton.vue";
+import TicTac from "@/components/TicTac.vue";
+import OptimizedMedia from "@/components/OptimizedMedia.vue";
 import { useUser } from "@/stores/user";
 import { useRouter } from "vue-router";
 
-const { logout } = useUser();
+const { logout, user } = useUser();
 const router = useRouter();
 async function onLogout() {
   await logout();
@@ -22,6 +23,13 @@ async function onLogout() {
           <span class="Header__LogoText">관리자</span>
         </RouterLink>
       </h1>
+      <TicTac class="Header__NowTime" />
+      <OptimizedMedia
+        :src="user?.photoURL"
+        alt="프로필 사진"
+        external
+        class="Header__UserPhoto"
+      />
       <CommonButton filled class="Header__Logout" @click="onLogout">
         <template #text>로그아웃</template>
       </CommonButton>
@@ -32,7 +40,7 @@ async function onLogout() {
 <style lang="scss" scoped>
 .Header {
   background-color: hsl(var(--bg-000) / 0.8);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(1.6rem);
   border-bottom: 1px solid hsl(var(--bg-50));
   padding: 0 2.4rem;
 
@@ -50,9 +58,15 @@ async function onLogout() {
     height: 4rem;
     border-radius: 9999px;
     transition: background-color 150ms ease-out;
+    outline: 0.4rem solid transparent;
+    border: 1px solid transparent;
     &:hover {
       background-color: hsl(var(--theme-500) / 0.1);
       color: hsl(var(--theme-500));
+    }
+    &:focus-visible {
+      border-color: hsl(var(--theme-500));
+      outline-color: hsl(var(--theme-500) / 0.3);
     }
   }
   &__LogoMark {
@@ -67,8 +81,27 @@ async function onLogout() {
     transition: 150ms ease-out;
   }
 
-  &__Logout {
+  &__NowTime {
     margin-left: auto;
+    display: none;
+  }
+
+  &__UserPhoto {
+    width: 4rem;
+    margin-left: auto;
+    margin-right: -1rem;
+    border-radius: 50%;
+    --aspect-ratio: 100%;
+    --radius: 50%;
+    z-index: -1;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .Header {
+    &__NowTime {
+      display: flex;
+    }
   }
 }
 </style>

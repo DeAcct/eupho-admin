@@ -25,6 +25,7 @@
   gap: 0.8rem;
   background-color: transparent;
   border-radius: 9999px;
+  outline: 0.4rem solid transparent;
   &:has(&__Icon) {
     padding: 0 2.4rem 0 1.6rem;
   }
@@ -36,6 +37,10 @@
     color: hsl(var(--theme-500));
     font-size: 1.4rem;
   }
+  &:focus-visible {
+    outline-color: hsl(var(--theme-500) / 0.3);
+  }
+
   &[filled] {
     background-color: hsl(var(--theme-500));
     color: hsl(var(--bg-000));
