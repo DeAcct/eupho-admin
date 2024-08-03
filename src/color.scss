@@ -26,6 +26,9 @@
   // --bg-300: 0 5% 85%;
   // --bg-200: 0 5% 95%;
   // --bg-100: 0 0% 100%;
+
+  --neumorphism-shadow: 0.6rem 0.6rem 2.4rem hsl(var(--bg-100)),
+    -0.6rem -0.6rem 1.6rem hsl(var(--bg-000));
 }
 
 #app[data-theme="dark"],
@@ -61,4 +64,7 @@
   // --bg-300: 0 5% 11%;
   // --bg-200: 0 5% 7%;
   // --bg-100: 0 0% 0%;
+
+  --neumorphism-shadow: 0.6rem 0.6rem 2.4rem hsl(var(--bg-000)),
+    -0.6rem -0.6rem 1.6rem hsl(var(--bg-100));
 }

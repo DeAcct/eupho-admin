@@ -1,5 +1,5 @@
 import { onUnmounted, reactive } from "vue";
-import { useDigit, type TimeCrumb } from "./format";
+import { useDigit } from "./format";
 
 export function useLandingCopy() {
   const now = new Date();
@@ -18,15 +18,10 @@ export function useLandingCopy() {
 }
 
 
-interface Time {
-  hh: TimeCrumb;
-  mm: TimeCrumb;
-  ss: TimeCrumb;
-}
 export function useTime() {
-  const time: Time = reactive({ hh: "00", mm: "00", ss: "00" });
+  const time = reactive({ hh: "00", mm: "00", ss: "00" });
   setTime();
-  const interval: number = setInterval(setTime, 1000);
+  const interval = setInterval(setTime, 1000);
   function setTime() {
     const now = new Date();
     time.hh = useDigit(now.getHours());

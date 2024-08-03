@@ -99,10 +99,14 @@ async function onSubmit(e: Event) {
       </TextField>
 
       <div class="Login__ButtonBox">
-        <CommonButton class="Login__Button">
+        <CommonButton class="Login__Button" data-button-style="solid">
           <template #text>신입사원 계정요청</template>
         </CommonButton>
-        <CommonButton class="Login__Button" filled type="submit">
+        <CommonButton
+          class="Login__Button"
+          data-button-style="filled"
+          type="submit"
+        >
           <template #text>로그인</template>
         </CommonButton>
       </div>
@@ -215,9 +219,6 @@ async function onSubmit(e: Event) {
   }
   &__Button {
     align-self: flex-end;
-    &:first-child {
-      margin-left: -2.4rem;
-    }
   }
 }
 

@@ -3,17 +3,27 @@
 //   icon?: void;
 //   text: void;
 // }>;
+withDefaults(
+  defineProps<{
+    element?: "button" | "a" | "router-link";
+  }>(),
+  { element: "button" }
+);
 </script>
 
 <template>
-  <button type="button" class="CommonButton">
+  <component
+    :is="element"
+    :type="element === 'button' ? 'button' : undefined"
+    class="CommonButton"
+  >
     <i class="CommonButton__Icon" v-if="$slots.icon">
       <slot name="icon"></slot>
     </i>
     <span class="CommonButton__Text">
       <slot name="text"></slot>
     </span>
-  </button>
+  </component>
 </template>
 
 <style lang="scss" scoped>
@@ -41,12 +51,17 @@
     outline-color: hsl(var(--theme-500) / 0.3);
   }
 
-  &[filled] {
+  &[data-button-style="filled"] {
     background-color: hsl(var(--theme-500));
+  }
+  &[data-button-style="filled"] &__Text {
     color: hsl(var(--bg-000));
   }
-  &[filled] &__Text {
-    color: hsl(var(--bg-000));
+  &[data-button-style="solid"] {
+    background-color: hsl(var(--theme-500) / 0.15);
+  }
+  &[data-button-style="solid"] &__Text {
+    color: hsl(var(--theme-500));
   }
 }
 </style>

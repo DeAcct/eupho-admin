@@ -5,6 +5,7 @@ import TicTac from "@/components/TicTac.vue";
 import OptimizedMedia from "@/components/OptimizedMedia.vue";
 import { useUser } from "@/stores/user";
 import { useRouter } from "vue-router";
+import { useMediaQuery } from "@/composables/device";
 
 const { logout, user } = useUser();
 const router = useRouter();
@@ -12,6 +13,8 @@ async function onLogout() {
   await logout();
   router.push("/login");
 }
+
+const viewport = useMediaQuery("(min-width: 768px)");
 </script>
 
 <template>
@@ -23,14 +26,18 @@ async function onLogout() {
           <span class="Header__LogoText">관리자</span>
         </RouterLink>
       </h1>
-      <TicTac class="Header__NowTime" />
+      <TicTac class="Header__NowTime" v-if="viewport" />
       <OptimizedMedia
         :src="user?.photoURL"
         alt="프로필 사진"
         external
         class="Header__UserPhoto"
       />
-      <CommonButton filled class="Header__Logout" @click="onLogout">
+      <CommonButton
+        data-button-style="filled"
+        class="Header__Logout"
+        @click="onLogout"
+      >
         <template #text>로그아웃</template>
       </CommonButton>
     </div>
@@ -81,11 +88,6 @@ async function onLogout() {
     transition: 150ms ease-out;
   }
 
-  &__NowTime {
-    margin-left: auto;
-    display: none;
-  }
-
   &__UserPhoto {
     width: 4rem;
     margin-left: auto;
@@ -101,6 +103,7 @@ async function onLogout() {
   .Header {
     &__NowTime {
       display: flex;
+      margin-left: auto;
     }
   }
 }

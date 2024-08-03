@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import useRouteCut from "./composables/routeCut";
 
-useRouteCut();
+// useRouteCut();
 </script>
 
 <template>
