@@ -7,6 +7,8 @@
 
 <style lang="scss" scoped>
 svg {
+  width: 100%;
+  height: 100%;
   color: inherit;
   fill: currentColor;
   transition: 150ms ease-out;
