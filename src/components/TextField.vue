@@ -39,20 +39,22 @@ function clear() {
         </span>
         <slot name="input"></slot>
       </span>
-      <button
-        type="button"
-        class="TextField__Button"
-        v-if="inputValue.length"
-        @click="clear"
-      >
-        <IconBase>
-          <template #title>지우기</template>
-          <template #icon>
-            <IconClear />
-          </template>
-        </IconBase>
-      </button>
-      <slot name="buttons"></slot>
+      <div class="TextField__Buttons">
+        <button
+          type="button"
+          class="TextField__Button"
+          v-if="inputValue.length"
+          @click="clear"
+        >
+          <IconBase>
+            <template #title>지우기</template>
+            <template #icon>
+              <IconClear />
+            </template>
+          </IconBase>
+        </button>
+        <slot name="buttons"></slot>
+      </div>
     </label>
     <div class="TextField__Supporting" v-if="$slots.supporting">
       <slot name="supporting"></slot>
@@ -121,9 +123,14 @@ function clear() {
     font-weight: 600;
     animation: var(--TextField__LabelAnimation, none);
   }
+  &__Buttons {
+    right: 1.2rem;
+    position: absolute;
+    display: flex;
+    gap: 0.4rem;
+  }
   &__Button {
-    margin-left: auto;
-    flex-basis: 2.4rem;
+    width: 2.4rem;
     height: 2.4rem;
     flex-shrink: 0;
     flex-grow: 0;
