@@ -125,6 +125,7 @@ function clear() {
     margin-left: auto;
     width: 2.4rem;
     height: 2.4rem;
+    flex-shrink: 0;
     &:focus {
       color: hsl(var(--theme-300));
     }
