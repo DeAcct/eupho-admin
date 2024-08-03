@@ -126,6 +126,7 @@ function clear() {
     width: 2.4rem;
     height: 2.4rem;
     flex-shrink: 0;
+    flex-basis: auto;
     &:focus {
       color: hsl(var(--theme-300));
     }
