@@ -123,10 +123,10 @@ function clear() {
   }
   &__Button {
     margin-left: auto;
-    width: 2.4rem;
+    flex-basis: 2.4rem;
     height: 2.4rem;
     flex-shrink: 0;
-    flex-basis: auto;
+    flex-grow: 0;
     &:focus {
       color: hsl(var(--theme-300));
     }
