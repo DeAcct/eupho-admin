@@ -7,10 +7,10 @@ import { useUser } from "@/stores/user";
 import { useRouter } from "vue-router";
 import { useMediaQuery } from "@/composables/device";
 
-const { logout, user } = useUser();
+const userStore = useUser();
 const router = useRouter();
 async function onLogout() {
-  await logout();
+  await userStore.logout();
   router.push("/login");
 }
 
@@ -28,9 +28,10 @@ const viewport = useMediaQuery("(min-width: 768px)");
       </h1>
       <TicTac class="Header__NowTime" v-if="viewport" />
       <OptimizedMedia
-        :src="user?.photoURL"
+        :src="userStore.user?.photoURL"
         alt="프로필 사진"
         external
+        skelleton
         class="Header__UserPhoto"
       />
       <CommonButton

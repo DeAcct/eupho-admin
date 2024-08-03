@@ -1,6 +1,9 @@
 <template>
-  <span class="OptimizedMedia">
-    <span class="OptimizedMedia__Wrap" :class="skelleton && 'loading-target'">
+  <span
+    class="OptimizedMedia"
+    :class="skelleton && 'OptimizedMedia--Skelleton'"
+  >
+    <span class="OptimizedMedia__Wrap">
       <component
         :is="type"
         :src="fileSrc"
@@ -77,9 +80,15 @@ watchEffect(async () => {
 </script>
 
 <style lang="scss" scoped>
+@import "@/styles/mixins/Animation.scss";
+
 .OptimizedMedia {
   position: relative;
   display: block;
+
+  &--Skelleton {
+    @include LoadingTarget;
+  }
   &__Wrap {
     display: block;
     width: 100%;

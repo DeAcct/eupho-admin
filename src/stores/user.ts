@@ -1,4 +1,4 @@
-import { ref, unref, type Ref } from 'vue'
+import { onMounted, ref, unref, type Ref } from 'vue'
 import { defineStore } from 'pinia'
 
 import { browserSessionPersistence, getAuth, onAuthStateChanged, setPersistence, signInWithEmailAndPassword, signOut, type User } from "firebase/auth";
@@ -50,6 +50,7 @@ export const useUser = defineStore('user', () => {
   onAuthStateChanged(auth, async (data) => {
     // await syncUser();
     user.value = data;
+    console.log(user.value?.photoURL)
   });
 
   return { user, login, logout, isLoading }
